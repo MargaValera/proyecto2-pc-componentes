@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'work Sans', sans-serif;
+}
+
+body {
+  min-height: 100svh;
+}
+
+:root {
+  --mv-color-1: #ff8c00;
+  --mv-color-2: #e5e6eb;
+  --mv-color-3: #b6b6b6;
+  --mv-color-4: #ffee2e;
+  --mv-color-5: #15975b;
+  --mv-color-6: #303030;
+
+  --mv-margin-xs: 10px;
+  --mv-margin-s: 20px;
+  --mv-margin-m: 30px;
+  --mv-margin-l: 40px;
+  --mv-margin-xl: 50px;
+  --mv-margin-section: 80px;
+
+  --mv-padding-xs: 10px;
+  --mv-padding-s: 20px;
+  --mv-padding-m: 30px;
+  --mv-padding-l: 40px;
+  --mv-padding-xl: 50px;
+
+  --mv-gap-xs: 10px;
+  --mv-gap-s: 20px;
+  --mv-gap-m: 30px;
+  --mv-gap-l: 40px;
+  --mv-gap-xl: 50px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--mv-gap-xs);
+  flex-wrap: wrap;
+  background-color: var(--mv-color-2);
+  color: var(--mv-color-6);
+}
+.flex-container > h3 {
+  text-align: center;
+  margin: var(--mv-margin-xs);
+}
+
+#app {
+  margin: var(--mv-margin-s);
+  gap: var(--mv-gap-xl);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#app > div {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: auto;
+  padding-bottom: var(--mv-padding-s);
+  border: solid var(--mv-color-1) 3px;
+}
+
+.img-container {
+  margin-top: var(--mv-margin-xs);
+  width: 100%;
+  height: 250px;
+}
+
+.img-container > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.estrellas {
+  gap: var(--rtc-gap-xs);
+}
+
+.flex-container > div .estrella {
+  width: 25px;
+  height: 25px;
+  background-color: var(--mv-color-2);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.flex-container > div .rellena {
+  background-color: var(--mv-color-4);
+}
+
+nav {
+  width: 100%;
+}
+ul {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,21 @@
+nav {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border: 1px solid black;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  text-decoration: none;
+}
+li {
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
