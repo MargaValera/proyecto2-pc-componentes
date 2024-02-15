@@ -127,20 +127,21 @@ const filterProductsBySeller = (seller) => {
 
 // Mostrar productos filtrados en la página
 const displayProducts = (filteredProducts) => {
-  const pcContainer = document.querySelector('#app')
-  pcContainer.innerHTML = ''
+  const pcContainer = document.querySelector('#products')
 }
 
-// displayProducts(filteredProducts)
-
 const displayFilteredProducts = (filteredProducts, selectedSeller) => {
-  filteredProducts.length = 0
-  for (const product of products) {
+  const resultProductSelected = []
+  const actualProducts = document.querySelector('#app')
+  actualProducts.innerHTML = ''
+  for (const product of filteredProducts) {
     if (product.seller === selectedSeller) {
-      filteredProducts.push(product)
+      resultProductSelected.push(product)
     }
   }
-  displayProducts(filteredProducts)
+
+  printPc(resultProductSelected)
+  console.log(resultProductSelected)
 }
 
 const initSellerSelect = () => {
@@ -148,13 +149,13 @@ const initSellerSelect = () => {
   const sellerSelect = createSellerOptions(sellers)
   sellerSelect.addEventListener('change', (event) => {
     const selectedSeller = event.target.value
+    console.log(selectedSeller)
     const filteredProducts = filterProductsBySeller(selectedSeller)
     displayFilteredProducts(filteredProducts, selectedSeller)
   })
   document.getElementById('filtros').appendChild(sellerSelect)
 }
 
-// Llamar a la función principal para inicializar el select de vendedores
 initSellerSelect()
 
 const printPc = (pcs) => {
@@ -185,7 +186,6 @@ const printPc = (pcs) => {
     price.textContent = pc.price
     review.textContent = pc.reviews
     seller.textContent = pc.seller
-    // divStars.textContent = pc.stars
 
     divpc.className = 'flex-container'
     divImg.className = 'img-container'
@@ -202,4 +202,3 @@ const printPc = (pcs) => {
   }
 }
 printPc(products)
-// selectSeller(products)
