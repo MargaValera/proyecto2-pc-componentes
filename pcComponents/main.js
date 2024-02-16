@@ -98,7 +98,37 @@ let STARS = 0
 
 let sellers = []
 
-// Obtener la lista de vendedores únicos
+const getPriceList = (products) => {
+  const priceSet = new Set()
+  products.forEach((product) => {
+    priceSet.add(product.price)
+  })
+  return Array.from(priceSet)
+}
+
+// const numHolder = document.querySelector('#filtros')
+
+const PriceList = document.createElement('div')
+const numeric = document.createElement('input')
+numeric.setAttribute('type', 'number')
+numeric.placeholder = 'Inserta un precio'
+
+const buttonSearch = document.createElement('button')
+buttonSearch.textContent = 'search'
+PriceList.appendChild(numeric)
+PriceList.appendChild(buttonSearch)
+
+const numericFilter = () => {
+  // numeric.textContent = `€+${products.price}`
+  const filteredPrice = getPriceList(products)
+  if (numeric <= filteredPrice.value) {
+    console.log(printPc)
+  }
+  document.getElementById('filtros').appendChild(PriceList)
+}
+
+numericFilter(getPriceList)
+
 const getSellersList = (products) => {
   const sellersSet = new Set()
   products.forEach((product) => {
@@ -106,6 +136,15 @@ const getSellersList = (products) => {
   })
   return Array.from(sellersSet)
 }
+
+// Obtener la lista de vendedores únicos
+// !const getSellersList = (products) => {
+//   const sellersSet = new Set()
+//   products.forEach((product) => {
+//     sellersSet.add(product.seller)
+//   })
+//   return Array.from(sellersSet)
+// !}
 
 // Crear opciones de select para vendedores
 const createSellerOptions = (sellers) => {
@@ -126,9 +165,9 @@ const filterProductsBySeller = (seller) => {
 }
 
 // Mostrar productos filtrados en la página
-const displayProducts = (filteredProducts) => {
-  const pcContainer = document.querySelector('#products')
-}
+// const displayProducts = (filteredProducts) => {
+//   const pcContainer = document.querySelector('#products')
+// }
 
 const displayFilteredProducts = (filteredProducts, selectedSeller) => {
   const resultProductSelected = []

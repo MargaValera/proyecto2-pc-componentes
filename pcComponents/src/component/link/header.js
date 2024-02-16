@@ -37,9 +37,9 @@ const Header = () => {
   }
 
   // Agregar enlaces adicionales
-  createLink(ul, 'character')
-  createLink(ul, 'location')
-  createLink(ul, 'episodes')
+  createLink(ul, 'Prices')
+  createLink(ul, 'Models')
+  createLink(ul, 'Brand')
 
   // Agregar ul al nav
   nav.appendChild(ul)
