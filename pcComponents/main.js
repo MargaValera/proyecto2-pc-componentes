@@ -4,7 +4,7 @@ import './style.css'
 const products = [
   {
     name: 'HP Essentials 255 G8 AMD',
-    price: 289,
+    price: `289 ${'€'}`,
     stars: 4,
     reviews: 250,
     seller: 'PcComponentes',
@@ -98,10 +98,12 @@ let STARS = 0
 
 let sellers = []
 
+let prices = []
+
 const getPriceList = (products) => {
   const priceSet = new Set()
   products.forEach((product) => {
-    priceSet.add(product.price)
+    priceSet.add(`product.price ${'€'}`)
   })
   return Array.from(priceSet)
 }
@@ -119,12 +121,11 @@ PriceList.appendChild(numeric)
 PriceList.appendChild(buttonSearch)
 
 const numericFilter = () => {
-  // numeric.textContent = `€+${products.price}`
   const filteredPrice = getPriceList(products)
   if (numeric <= filteredPrice.value) {
-    console.log(printPc)
+    filterProductsBySeller.push(product)
   }
-  document.getElementById('filtros').appendChild(PriceList)
+  // document.getElementById('filtros').appendChild(PriceList)
 }
 
 numericFilter(getPriceList)
