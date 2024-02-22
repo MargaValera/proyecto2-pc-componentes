@@ -4,7 +4,7 @@ import './style.css'
 const products = [
   {
     name: 'HP Essentials 255 G8 AMD',
-    price: `289 ${'€'}`,
+    price: 289,
     stars: 4,
     reviews: 250,
     seller: 'PcComponentes',
@@ -58,7 +58,7 @@ const products = [
   },
   {
     name: 'Dell Vostro 3520',
-    price: 1.299,
+    price: 1299,
     stars: 5,
     reviews: 88,
     seller: 'AppleStore',
@@ -76,7 +76,7 @@ const products = [
   },
   {
     name: 'Apple Macbook Air Apple M2',
-    price: 1.169,
+    price: 1169,
     stars: 5,
     reviews: 36,
     seller: 'PcComponentes',
@@ -94,62 +94,53 @@ const products = [
   }
 ]
 
-let STARS = 0
-
 let sellers = []
 
-let prices = []
+//! filtro de limpieza
+const cleanFilter = document.createElement('button')
+cleanFilter.textContent = 'limpiar Filtros'
+cleanFilter.className = 'clean'
+document.getElementById('filtros').appendChild(cleanFilter)
 
-const getPriceList = (products) => {
-  const priceSet = new Set()
-  products.forEach((product) => {
-    priceSet.add(`product.price ${'€'}`)
-  })
-  return Array.from(priceSet)
-}
+cleanFilter.addEventListener('click', (event) => {
+  numeric.value = 0
+  sellers = ''
+  console.log(products)
+  printPc(products)
+})
 
-// const numHolder = document.querySelector('#filtros')
-
-const PriceList = document.createElement('div')
+//! Filtro numérico
+const PriceDiv = document.createElement('div')
 const numeric = document.createElement('input')
 numeric.setAttribute('type', 'number')
 numeric.placeholder = 'Inserta un precio'
 
 const buttonSearch = document.createElement('button')
 buttonSearch.textContent = 'search'
-PriceList.appendChild(numeric)
-PriceList.appendChild(buttonSearch)
+PriceDiv.appendChild(numeric)
+PriceDiv.appendChild(buttonSearch)
+document.getElementById('filtros').appendChild(PriceDiv)
 
-const numericFilter = () => {
-  const filteredPrice = getPriceList(products)
-  if (numeric <= filteredPrice.value) {
-    filterProductsBySeller.push(product)
-  }
-  // document.getElementById('filtros').appendChild(PriceList)
+const filterProductsByPrice = (price) => {
+  return products.filter((product) => product.price <= price)
 }
 
-numericFilter(getPriceList)
+buttonSearch.addEventListener('click', (event) => {
+  printPc(filterProductsByPrice(numeric.value))
+})
 
+//! filtro de vendedores
 const getSellersList = (products) => {
   const sellersSet = new Set()
   products.forEach((product) => {
     sellersSet.add(product.seller)
   })
-  return Array.from(sellersSet)
+  return sellersSet
 }
 
-// Obtener la lista de vendedores únicos
-// !const getSellersList = (products) => {
-//   const sellersSet = new Set()
-//   products.forEach((product) => {
-//     sellersSet.add(product.seller)
-//   })
-//   return Array.from(sellersSet)
-// !}
-
-// Crear opciones de select para vendedores
 const createSellerOptions = (sellers) => {
   const select = document.createElement('select')
+  select.placeholder = 'Buscar vendedor'
 
   sellers.forEach((seller) => {
     const option = document.createElement('option')
@@ -165,11 +156,6 @@ const filterProductsBySeller = (seller) => {
   return products.filter((product) => product.seller === seller)
 }
 
-// Mostrar productos filtrados en la página
-// const displayProducts = (filteredProducts) => {
-//   const pcContainer = document.querySelector('#products')
-// }
-
 const displayFilteredProducts = (filteredProducts, selectedSeller) => {
   const resultProductSelected = []
   const actualProducts = document.querySelector('#app')
@@ -181,7 +167,6 @@ const displayFilteredProducts = (filteredProducts, selectedSeller) => {
   }
 
   printPc(resultProductSelected)
-  console.log(resultProductSelected)
 }
 
 const initSellerSelect = () => {
@@ -189,7 +174,6 @@ const initSellerSelect = () => {
   const sellerSelect = createSellerOptions(sellers)
   sellerSelect.addEventListener('change', (event) => {
     const selectedSeller = event.target.value
-    console.log(selectedSeller)
     const filteredProducts = filterProductsBySeller(selectedSeller)
     displayFilteredProducts(filteredProducts, selectedSeller)
   })
@@ -242,3 +226,13 @@ const printPc = (pcs) => {
   }
 }
 printPc(products)
+
+const linesContainer = document.createElement('div')
+linesContainer.className = 'lines'
+
+for (let i = 0; i < 6; i++) {
+  const line = document.createElement('div')
+  line.className = 'line'
+  linesContainer.appendChild(line)
+}
+document.body.appendChild(linesContainer)

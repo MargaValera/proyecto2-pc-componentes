@@ -3,18 +3,20 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: 'work Sans', sans-serif;
 }
 
 body {
   min-height: 100svh;
+  height: 100%;
+  background-color: var(--mv-color-6);
 }
 
 :root {
-  --mv-color-1: #ff8c00;
+  --mv-color-1: #8000ff;
   --mv-color-2: #e5e6eb;
-  --mv-color-3: #b6b6b6;
+  --mv-color-3: #999797;
   --mv-color-4: #ffee2e;
   --mv-color-5: #15975b;
   --mv-color-6: #303030;
@@ -54,12 +56,13 @@ body {
 }
 
 #app {
-  margin: var(--mv-margin-s);
   gap: var(--mv-gap-xl);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  padding: 10px;
 }
 
 #app > div {
@@ -69,6 +72,7 @@ body {
   height: auto;
   padding-bottom: var(--mv-padding-s);
   border: solid var(--mv-color-1) 3px;
+  border-radius: 5px;
 }
 
 .img-container {
@@ -112,12 +116,102 @@ body {
   background-color: var(--mv-color-4);
 }
 
-nav {
+#filtros {
   width: 100%;
-}
-ul {
+  height: auto;
   display: flex;
-  align-content: center;
-  flex-direction: column;
   flex-wrap: wrap;
+  padding: 8px;
+  align-content: center;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+#filtros > .clean,
+button,
+input,
+select {
+  border: 2px solid var(--mv-color-1);
+  border-radius: 3px;
+  padding: 10px;
+  gap: 8px;
+}
+
+.lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.lines .line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.lines .line::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(255, 255, 255, 0)),
+    color-stop(75%, #ffffff),
+    to(#ffffff)
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  -webkit-animation: run 7s 0s infinite;
+  animation: run 7s 0s infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+.lines .line:nth-child(1) {
+  margin-left: -25%;
+}
+.lines .line:nth-child(1)::after {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+.lines .line:nth-child(3) {
+  margin-left: 25%;
+}
+.lines .line:nth-child(3)::after {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+}
+
+@-webkit-keyframes run {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+@keyframes run {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 110%;
+  }
 }

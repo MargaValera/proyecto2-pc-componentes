@@ -1,21 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'work Sans', sans-serif;
+}
+
+body {
+  min-height: 100svh;
+}
+
+:root {
+  --mv-color-1: #ff8c00;
+  --mv-color-2: #e5e6eb;
+  --mv-color-3: #b6b6b6;
+  --mv-color-4: #ffee2e;
+  --mv-color-5: #15975b;
+  --mv-color-6: #303030;
+}
+
 nav {
+  margin-top: 25px;
   width: 100%;
   display: flex;
-  align-content: center;
-  justify-content: center;
   border: 1px solid black;
   flex-wrap: wrap;
   text-decoration: none;
 }
+
 nav > ul {
   display: flex;
+  width: 100%;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 20px;
-  text-decoration: none;
+  list-style: none;
+  height: 100px;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: var(--mv-color-6);
 }
-li {
-  text-decoration: none;
+
+ul > li {
+  color: var(--mv-color-2);
+  font-size: larger;
+  font-weight: 900;
 }
-a {
-  text-decoration: none;
+li :hover {
+  text-shadow: 4px 4px 5px var(--mv-color-3);
 }
