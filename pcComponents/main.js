@@ -236,3 +236,4 @@ for (let i = 0; i < 6; i++) {
   linesContainer.appendChild(line)
 }
 document.body.appendChild(linesContainer)
+console.log('hola')
