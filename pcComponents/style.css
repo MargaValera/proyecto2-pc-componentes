@@ -135,6 +135,7 @@ select {
   border-radius: 3px;
   padding: 10px;
   gap: 8px;
+  cursor: pointer;
 }
 
 .lines {
