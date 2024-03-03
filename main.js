@@ -97,24 +97,29 @@ const products = [
 let sellers = []
 
 //! filtro de limpieza
+
 const cleanFilter = document.createElement('button')
 cleanFilter.textContent = 'limpiar Filtros'
 cleanFilter.className = 'clean'
 document.getElementById('filtros').appendChild(cleanFilter)
 
+const clear = () => {
+  numeric.value = null
+  const sellerSelect = document.getElementById('selectSellers')
+  sellerSelect.value = 'Selecciona un vendedor'
+}
+
 cleanFilter.addEventListener('click', (event) => {
-  numeric.value = 0
-  sellers = ''
-  console.log(products)
+  clear()
   printPc(products)
 })
 
 //! Filtro numérico
+
 const PriceDiv = document.createElement('div')
 const numeric = document.createElement('input')
 numeric.setAttribute('type', 'number')
 numeric.placeholder = 'Inserta un precio'
-
 const buttonSearch = document.createElement('button')
 buttonSearch.textContent = 'search'
 PriceDiv.appendChild(numeric)
@@ -127,10 +132,13 @@ const filterProductsByPrice = (price) => {
 
 buttonSearch.addEventListener('click', (event) => {
   printPc(filterProductsByPrice(numeric.value))
+  const sellerSelect = document.getElementById('selectSellers')
+  sellerSelect.value = 'Selecciona un vendedor'
+  resetFilterValues()
 })
 
 //! filtro de vendedores
-const getSellersList = (products) => {
+const getSellersList = () => {
   const sellersSet = new Set()
   products.forEach((product) => {
     sellersSet.add(product.seller)
@@ -140,7 +148,13 @@ const getSellersList = (products) => {
 
 const createSellerOptions = (sellers) => {
   const select = document.createElement('select')
-  select.placeholder = 'Buscar vendedor'
+  select.id = 'selectSellers'
+
+  const defaultOption = document.createElement('option')
+  defaultOption.textContent = 'Selecciona un vendedor'
+  defaultOption.disabled = true
+  defaultOption.selected = true
+  select.appendChild(defaultOption)
 
   sellers.forEach((seller) => {
     const option = document.createElement('option')
@@ -165,7 +179,6 @@ const displayFilteredProducts = (filteredProducts, selectedSeller) => {
       resultProductSelected.push(product)
     }
   }
-
   printPc(resultProductSelected)
 }
 
@@ -175,12 +188,16 @@ const initSellerSelect = () => {
   sellerSelect.addEventListener('change', (event) => {
     const selectedSeller = event.target.value
     const filteredProducts = filterProductsBySeller(selectedSeller)
+    console.log(selectedSeller)
     displayFilteredProducts(filteredProducts, selectedSeller)
+    numeric.value = null
   })
   document.getElementById('filtros').appendChild(sellerSelect)
 }
 
 initSellerSelect()
+
+//! Cartas de productos
 
 const printPc = (pcs) => {
   const pcContainer = document.querySelector('#app')
@@ -207,9 +224,9 @@ const printPc = (pcs) => {
 
     img.src = pc.image
     name.textContent = pc.name
-    price.textContent = pc.price
-    review.textContent = pc.reviews
-    seller.textContent = pc.seller
+    price.textContent = `€ ${pc.price}`
+    review.textContent = `Reviews ${pc.reviews}`
+    seller.textContent = `Vendedor ${pc.seller}`
 
     divpc.className = 'flex-container'
     divImg.className = 'img-container'
@@ -230,10 +247,11 @@ printPc(products)
 const linesContainer = document.createElement('div')
 linesContainer.className = 'lines'
 
-for (let i = 0; i < 6; i++) {
+//! líneas de fondo
+
+for (let i = 0; i < 3; i++) {
   const line = document.createElement('div')
   line.className = 'line'
   linesContainer.appendChild(line)
 }
 document.body.appendChild(linesContainer)
-console.log('hola')
